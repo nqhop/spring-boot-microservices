@@ -1,0 +1,24 @@
+===== docker =====
+docker run -p 3306:3306 --name microservices -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=microservicesdemo -d mysql
+
+CREATE TABLE employee (
+    id int primary KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    age INT
+)
+
+INSERT INTO employee (id, name, email, age) VALUES (1, 'Amiya', 'ar@hmail', 25);
+INSERT INTO employee (id, name, email, age) VALUES (2, 'Asish', 'asis@hmail', 30);
+
+
+CREATE TABLE address (
+    id int primary KEY,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    employee_id INT,
+    CONSTRAINT fk_employee 
+        FOREIGN KEY (employee_id) REFERENCES employee(id)
+)
+
+INSERT INTO address (id, city, state, employee_id) VALUES (1, 'BLS', 'Odisha', 2);
